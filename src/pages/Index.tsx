@@ -9,6 +9,7 @@ import Testimonials from '../components/Testimonials';
 import Locations from '../components/Locations';
 import LeadMagnet from '../components/LeadMagnet';
 import CallToAction from '../components/CallToAction';
+import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 
 const Index = () => {
@@ -34,6 +35,7 @@ const Index = () => {
         <Testimonials />
         <Locations />
         <LeadMagnet />
+        <FAQ />
         <CallToAction />
       </main>
       <Footer />

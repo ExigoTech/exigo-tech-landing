@@ -1,16 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { ChevronDown, Shield, Award, CheckCircle, HelpCircle } from 'lucide-react';
+import { ChevronDown, Shield, Award, CheckCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import {
   Form,
   FormControl,
@@ -210,54 +204,6 @@ const Hero = () => {
               </form>
             </Form>
           </div>
-        </div>
-      </div>
-
-      {/* FAQ Section */}
-      <div className="container relative z-10 mt-16">
-        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-          <div className="flex items-center mb-6">
-            <HelpCircle size={24} className="text-exigo-blue mr-2" />
-            <h3 className="text-xl font-bold text-white">Frequently Asked Questions</h3>
-          </div>
-          
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1" className="border-white/10">
-              <AccordionTrigger className="text-white hover:text-exigo-blue">
-                What cybersecurity services does Exigo Tech offer?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/80">
-                Exigo Tech provides comprehensive cybersecurity services including vulnerability assessments, penetration testing, 24/7 security monitoring, incident response, and security awareness training for employees. Our solutions are tailored to businesses of all sizes across Sydney, Melbourne, and Brisbane.
-              </AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="item-2" className="border-white/10">
-              <AccordionTrigger className="text-white hover:text-exigo-blue">
-                How quickly can you respond to a security incident?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/80">
-                Our dedicated security operations center operates 24/7, with an average response time of under 15 minutes for critical security incidents. We employ automated detection systems combined with expert human analysis to ensure rapid identification and mitigation of threats.
-              </AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="item-3" className="border-white/10">
-              <AccordionTrigger className="text-white hover:text-exigo-blue">
-                What makes Exigo Tech different from other cybersecurity providers?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/80">
-                Exigo Tech combines local expertise with global security standards. Our team holds industry-leading certifications (CISSP, CEH, CISM) and we've been recognized with multiple awards including the ARN Innovation Award 2024 for security excellence. We provide customized solutions rather than one-size-fits-all approaches.
-              </AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="item-4" className="border-white/10">
-              <AccordionTrigger className="text-white hover:text-exigo-blue">
-                Do you offer compliance assistance for regulations like GDPR or the Privacy Act?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/80">
-                Yes, our security experts can help your business achieve and maintain compliance with various regulatory frameworks including Australia's Privacy Act, GDPR for international operations, PCI DSS for payment processing, and industry-specific requirements. We provide both technical solutions and documentation support.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
         </div>
       </div>
 
