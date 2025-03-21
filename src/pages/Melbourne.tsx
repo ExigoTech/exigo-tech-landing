@@ -24,7 +24,7 @@ const Melbourne = () => {
       metaDescription.setAttribute("content", "Melbourne's leading Managed IT Services provider. Proactive IT management, enterprise-grade cybersecurity, and tailored cloud solutions to help businesses scale efficiently and reduce costs.");
     }
 
-    // Add CSS for floating animation if not already present
+    // Add CSS for animations if not already present
     const styleElement = document.createElement('style');
     styleElement.textContent = `
       @keyframes float {
@@ -35,6 +35,15 @@ const Melbourne = () => {
       
       .animate-float {
         animation: float 6s ease-in-out infinite;
+      }
+      
+      @keyframes floatUpwards {
+        0% { transform: translateY(100%); }
+        100% { transform: translateY(-100%); }
+      }
+      
+      .floating-services {
+        animation: floatUpwards 60s linear infinite;
       }
     `;
     document.head.appendChild(styleElement);

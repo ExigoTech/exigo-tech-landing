@@ -84,51 +84,38 @@ const services: Service[] = [
 ];
 
 const FloatingServices = () => {
-  const [visibleServices, setVisibleServices] = useState<Service[]>([]);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [displayServices, setDisplayServices] = useState<Service[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    // Shuffle services
-    const shuffledServices = [...services].sort(() => Math.random() - 0.5);
+    // Create a pool of services with duplicates to ensure continuous flow
+    const servicePool = [...services, ...services, ...services];
+    setDisplayServices(servicePool);
     
-    // Initially show 7 services
-    setVisibleServices(shuffledServices.slice(0, 7));
-    
-    // Setup interval to continuously cycle services
-    intervalRef.current = setInterval(() => {
-      setVisibleServices(prev => {
-        const newServices = [...prev];
-        // Remove first service and add a new one at the end
-        newServices.shift();
-        const nextService = shuffledServices[Math.floor(Math.random() * shuffledServices.length)];
-        newServices.push(nextService);
-        return newServices;
-      });
-    }, 2000);
-    
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
+    // No need for interval-based cycling as we'll use CSS animation for continuous flow
   }, []);
   
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 w-full">
-      {visibleServices.map((service, index) => (
-        <div 
-          key={`${service.title}-${index}`}
-          className={`relative ${service.color} border ${service.borderColor} rounded-lg p-4 backdrop-blur-md 
-            flex flex-col items-center justify-center text-center gap-2 aspect-square
-            transition-all duration-500 hover:scale-105 animate-float`}
-          style={{ animationDelay: `${index * 0.2}s` }}
-        >
-          <div className="text-white mb-2">
-            {service.icon}
+    <div className="relative h-[500px] md:h-[600px] overflow-hidden" ref={containerRef}>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/80 z-10"></div>
+      
+      <div className="absolute inset-x-0 h-[2000px] grid grid-cols-3 gap-4 floating-services">
+        {displayServices.map((service, index) => (
+          <div 
+            key={`${service.title}-${index}`}
+            className={`${service.color} border ${service.borderColor} rounded-lg p-4 backdrop-blur-md 
+              flex flex-col items-center justify-center text-center gap-2 h-[150px]
+              transition-transform hover:scale-105 hover:z-20`}
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <div className="text-white mb-2">
+              {service.icon}
+            </div>
+            <h3 className="text-sm font-medium text-white">{service.title}</h3>
           </div>
-          <h3 className="text-sm font-medium text-white">{service.title}</h3>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
