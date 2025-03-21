@@ -2,19 +2,16 @@
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/MelbourneHero';
-import Services from '../components/Services';
-import Benefits from '../components/Benefits';
-import WhyExigo from '../components/WhyExigo';
+import MelbourneAdvantages from '../components/MelbourneAdvantages';
+import MelbourneServices from '../components/MelbourneServices';
+import MelbourneProcess from '../components/MelbourneProcess';
 import MelbourneTestimonials from '../components/MelbourneTestimonials';
+import MelbourneComparison from '../components/MelbourneComparison';
 import MelbourneLocation from '../components/MelbourneLocation';
+import MelbourneFAQ from '../components/MelbourneFAQ';
 import LeadMagnet from '../components/LeadMagnet';
 import CallToAction from '../components/CallToAction';
 import Footer from '../components/Footer';
-import MelbourneServices from '../components/MelbourneServices';
-import MelbourneAdvantages from '../components/MelbourneAdvantages';
-import MelbourneProcess from '../components/MelbourneProcess';
-import MelbourneComparison from '../components/MelbourneComparison';
-import MelbourneFAQ from '../components/MelbourneFAQ';
 
 const Melbourne = () => {
   useEffect(() => {
@@ -27,8 +24,28 @@ const Melbourne = () => {
       metaDescription.setAttribute("content", "Melbourne's leading Managed IT Services provider. Proactive IT management, enterprise-grade cybersecurity, and tailored cloud solutions to help businesses scale efficiently and reduce costs.");
     }
 
+    // Add CSS for floating animation if not already present
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+    `;
+    document.head.appendChild(styleElement);
+
     // Scroll to top on page load
     window.scrollTo(0, 0);
+
+    // Cleanup
+    return () => {
+      document.head.removeChild(styleElement);
+    };
   }, []);
 
   return (

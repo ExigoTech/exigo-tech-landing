@@ -1,28 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, Shield, Award, CheckCircle } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
-const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(8, "Please enter a valid phone number"),
-  message: z.string().optional(),
-});
+import FloatingServices from './FloatingServices';
 
 const MelbourneHero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -30,25 +9,6 @@ const MelbourneHero = () => {
   useEffect(() => {
     setLoaded(true);
   }, []);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-    },
-  });
-
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    toast({
-      title: "Contact Request Submitted",
-      description: "We'll get back to you as soon as possible with your free IT audit!",
-    });
-    form.reset();
-  };
 
   const scrollToServices = () => {
     const servicesSection = document.getElementById('services');
@@ -142,82 +102,9 @@ const MelbourneHero = () => {
           </div>
         </div>
 
-        {/* Right Column - Contact Form */}
+        {/* Right Column - Floating Services */}
         <div className={`transform transition-all duration-1000 delay-300 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-2xl">
-            <div className="mb-6">
-              <h3 className="text-xl font-bold text-white mb-2">Request Your Free IT Assessment</h3>
-              <p className="text-white/70 text-sm">Fill in the form below and our Melbourne team will contact you for a complimentary IT audit and consultation.</p>
-            </div>
-
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Full Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="John Smith" {...field} className="bg-white/20 border-white/10 text-white placeholder:text-white/50" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Email Address</FormLabel>
-                      <FormControl>
-                        <Input placeholder="john@company.com.au" {...field} className="bg-white/20 border-white/10 text-white placeholder:text-white/50" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Phone Number</FormLabel>
-                      <FormControl>
-                        <Input placeholder="0412 345 678" {...field} className="bg-white/20 border-white/10 text-white placeholder:text-white/50" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Tell Us About Your IT Needs</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Describe your current IT challenges..." 
-                          {...field} 
-                          className="bg-white/20 border-white/10 text-white placeholder:text-white/50 min-h-[80px]" 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <Button type="submit" className="w-full bg-exigo-blue hover:bg-exigo-darkblue text-white py-6">
-                  Submit Request
-                </Button>
-              </form>
-            </Form>
-          </div>
+          <FloatingServices />
         </div>
       </div>
 
