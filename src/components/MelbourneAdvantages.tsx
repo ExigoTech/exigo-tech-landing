@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { TrendingUp, Shield, DollarSign, Clock } from 'lucide-react';
 
 const MelbourneAdvantages = () => {
@@ -77,9 +78,9 @@ const MelbourneAdvantages = () => {
             Our managed IT services typically save Melbourne businesses 20-30% on their IT costs. 
             Use our interactive calculator to estimate your potential savings.
           </p>
-          <button className="bg-white text-exigo-darkblue px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+          <Link to="/calculator" className="bg-white text-exigo-darkblue px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors inline-block">
             Open IT Savings Calculator
-          </button>
+          </Link>
         </div>
       </div>
     </section>
