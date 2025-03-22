@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -195,7 +196,10 @@ const Calculator = () => {
                       </div>
                       
                       <div className="w-full bg-gray-200 rounded-full h-4">
-                        <div className="bg-green-500 h-4 rounded-full" style={{ width: `${Math.min(100, savings.percent)}%` }}></div>
+                        <div 
+                          className="bg-green-500 h-4 rounded-full" 
+                          style={{ width: `${Math.min(100, Number(savings.percent))}%` }}
+                        ></div>
                       </div>
                       <p className="text-right mt-2 text-green-700 font-semibold">
                         {savings.percent}% Cost Reduction
